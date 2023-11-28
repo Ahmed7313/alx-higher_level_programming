@@ -1,0 +1,21 @@
+#!/usr/bin/python3
+import os
+import compileall
+
+if __name__ == "__main__":
+    pyfile = os.getenv("PYFILE")
+    
+    if not pyfile:
+        print("Please set the PYFILE environment variable.")
+        exit(1)
+
+    if not pyfile.endswith(".py"):
+        print("The specified file is not a Python script.")
+        exit(1)
+
+    try:
+        compileall.compile_file(pyfile)
+        print(f"Compiling {pyfile} ...")
+    except Exception as e:
+        print(f"Error compiling {pyfile}: {e}")
+        exit(1)
