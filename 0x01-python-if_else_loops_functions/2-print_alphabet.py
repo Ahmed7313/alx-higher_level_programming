@@ -1,5 +1,11 @@
 #!/usr/bin/python3
 
-# Loop through ASCII values of lowercase letters and print them
+# Initialize an empty string to accumulate alphabet characters
+alphabet = ""
+
+# Loop through ASCII values of lowercase letters and add them to the string
 for i in range(97, 123):
-    print(chr(i), end='')
+    alphabet += chr(i)
+
+# Use .format() to format the final string
+print("{}".format(alphabet), end='')
