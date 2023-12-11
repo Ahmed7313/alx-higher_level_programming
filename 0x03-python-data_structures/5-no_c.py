@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 def no_c(my_string):
-    return ''.join(ch for ch in my_string if ch not in ['c', 'C'])
+    return ''.join(ch for ch in my_string if ch != 'c' and ch != 'C')
 
 if __name__ == "__main__":
     # This part is for testing and will not be executed when imported
