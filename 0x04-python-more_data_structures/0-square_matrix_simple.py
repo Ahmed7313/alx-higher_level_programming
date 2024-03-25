@@ -1,9 +1,19 @@
-#!/bin/python3
-def square_matrix_simple(matrix):
-  squared_matrix = [[0] * len(matrix) for _ in range(len(matrix[0]))]
+#!/usr/bin/python3
+def square_matrix_simple(matrix=[]):
+    # Use a list comprehension to iterate through rows of the matrix
+    # For each row, iterate through its elements and square each element
+    # Resulting structure is a new matrix with squared values
+    return [[x**2 for x in row] for row in matrix]
 
-  for i in range(len(matrix)):
-    for j in range(len(matrix[i])):
-      squared_matrix[i][j] = matrix[i][j] ** 2
+# Testing the function with the provided example
+if __name__ == "__main__":
+    matrix = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9]
+    ]
 
-  return squared_matrix
+    new_matrix = square_matrix_simple(matrix)
+    print(new_matrix)
+    print(matrix)  # The original matrix should remain unchanged
+
