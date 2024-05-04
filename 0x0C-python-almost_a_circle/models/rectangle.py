@@ -90,9 +90,18 @@ class Rectangle(Base):
         return self.width * self.height
 
     def display(self):
-        """Print the rectangle instance using the character #."""
+        """
+        Print the rectangle instance using the character '#',
+        taking care of x and y.
+        This method handles horizontal and vertical
+        offsets before printing the shape.
+        """
+        # Print new lines for the vertical offset (y)
+        print("\n" * self.y, end="")
+        # Print each row of the rectangle
         for _ in range(self.height):
-            print("#" * self.width)
+            # Print spaces for the horizontal offset (x) before the row starts
+            print(" " * self.x + "#" * self.width)
 
     def __str__(self):
         """Return string representation of the rectangle."""
