@@ -7,15 +7,23 @@ class Square(Rectangle):
     """Square class that inherits from Rectangle."""
 
     def __init__(self, size, x=0, y=0, id=None):
-        """Initialize a new Square instance.
-
-        Args:
-            size (int): The size of the square, both width and height.
-            x (int, optional): The x coordinate. Defaults to 0.
-            y (int, optional): The y coordinate. Defaults to 0.
-            id (int, optional): An optional id.
-        """
+        """Initialize a new Square instance with size, x, y, and id."""
         super().__init__(size, size, x, y, id)
+
+    @property
+    def size(self):
+        """Get the size of the square."""
+        return self.width
+
+    @size.setter
+    def size(self, value):
+        """Set the size of the square, updating both width and height."""
+        if not isinstance(value, int):
+            raise TypeError("size must be an integer")
+        if value <= 0:
+            raise ValueError("size must be > 0")
+        self.width = value
+        self.height = value
 
     def __str__(self):
         """Return string representation of the square."""
