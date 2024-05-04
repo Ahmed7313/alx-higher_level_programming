@@ -108,9 +108,19 @@ class Rectangle(Base):
         return (f"[Rectangle] ({self.id}) {self.x}/{self.y} - "
                 f"{self.width}/{self.height}")
 
-    def update(self, *args):
-        """Update attributes of the Rectangle instance."""
+    def update(self, *args, **kwargs):
+        """
+        Update the attributes of the Rectangle instance using non-keyword
+        arguments first, then keyword arguments.
+        """
+        attributes = ['id', 'width', 'height', 'x', 'y']
+
+        # First process *args
         if args:
-            attributes = ['id', 'width', 'height', 'x', 'y']
             for attr, value in zip(attributes, args):
                 setattr(self, attr, value)
+        # If no *args, process **kwargs
+        elif kwargs:
+            for key, value in kwargs.items():
+                if key in attributes:
+                    setattr(self, key, value)
