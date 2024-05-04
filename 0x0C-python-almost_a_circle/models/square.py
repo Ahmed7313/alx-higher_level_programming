@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Module for Square class."""
-
 from models.rectangle import Rectangle
 
 
@@ -24,4 +23,22 @@ class Square(Rectangle):
 
     def __str__(self):
         """Return string representation of the square."""
-        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
+        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.size}"
+
+    def update(self, *args, **kwargs):
+        """Update attributes of the Square instance."""
+        attributes = ['id', 'size', 'x', 'y']
+        if args:
+            # Assign args based on order to attributes
+            for attr, value in zip(attributes, args):
+                if attr == 'size':
+                    self.size = value  # Utilize size setter for validation
+                else:
+                    setattr(self, attr, value)
+        elif kwargs:
+            # Assign kwargs to attributes if args is empty
+            for key, value in kwargs.items():
+                if key == 'size':
+                    self.size = value  # Utilize size setter for validation
+                elif key in attributes:
+                    setattr(self, key, value)
