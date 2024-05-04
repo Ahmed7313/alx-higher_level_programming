@@ -2,7 +2,6 @@
 """Module for Square class."""
 from models.rectangle import Rectangle
 
-
 class Square(Rectangle):
     """Square class that inherits from Rectangle."""
 
@@ -18,12 +17,8 @@ class Square(Rectangle):
     @size.setter
     def size(self, value):
         """Set the size of the square, updating both width and height."""
-        if not isinstance(value, int):
-            raise TypeError("size must be an integer")
-        if value <= 0:
-            raise ValueError("size must be > 0")
-        self.width = value
-        self.height = value
+        self.width = value  # Rectangle's setter handles validation
+        self.height = value  # Ensure height matches width
 
     def __str__(self):
         """Return string representation of the square."""
