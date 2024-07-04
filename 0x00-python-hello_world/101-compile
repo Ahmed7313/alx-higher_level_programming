@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Check if PYFILE environment variable is set
+if [ -z "$PYFILE" ]; then
+    echo "Please set the PYFILE environment variable."
+    exit 1
+fi
+
+# Check if the specified file exists
+if [ ! -f "$PYFILE" ]; then
+    echo "The specified file does not exist."
+    exit 1
+fi
+
+# Compile the Python script and save the bytecode with the same name and .pyc extension
+python3 -m py_compile "$PYFILE"
+
+# Check if compilation was successful
+if [ $? -eq 0 ]; then
+    echo "Compiling $PYFILE ..."
+    # Rename the generated .pyc file to match the original script's name
+    mv "__pycache__/${PYFILE%.py}.cpython-*.pyc" "${PYFILE}c"
+    # Remove the __pycache__ directory
+    rm -rf "__pycache__"
+else
+    echo "Compilation failed."
+    exit 1
+fi
+
